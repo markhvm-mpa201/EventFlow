@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EventFlow.Core/EventFlow.Core.csproj" />
+  <Project Path="EventFlow.DataAccess/EventFlow.DataAccess.csproj" Id="6b373dbe-b4c8-444b-8d7e-3ac4ce576336" />
+</Solution>
