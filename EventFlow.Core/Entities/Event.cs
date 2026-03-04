@@ -1,7 +1,4 @@
 ﻿using EventFlow.Core.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EventFlow.Core.Entities;
 
@@ -11,4 +8,5 @@ public class Event : BaseEntity
 
     public Guid CategoryId { get; set; }
 
+    public Category Category { get; set; } = null!;
 }
