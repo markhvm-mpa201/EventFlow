@@ -2,7 +2,7 @@
 
 namespace EventFlow.DataAccess.Repositories.Abstractions.Generic;
 
-internal interface IRepository<T> where T : BaseEntity
+public interface IRepository<T> where T : BaseEntity
 {
     Task AddAsync(T entity);
     void Update(T entity);
