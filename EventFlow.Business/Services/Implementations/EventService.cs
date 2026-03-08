@@ -8,59 +8,77 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventFlow.Business.Services.Implementations;
 
-internal class EventService(IEventRepository _repository, IMapper _mapper) : IEventService
+internal class EventService(IEventRepository _repository, IMapper _mapper, ICloudinaryService _cloudinaryService) : IEventService
 {
-    public async Task CreateAsync(EventCreateDto dto)
+    public async Task<ResultDto> CreateAsync(EventCreateDto dto)
     {
         var Event = _mapper.Map<Event>(dto);
 
+        var imagePath = await _cloudinaryService.FileCreateAsync(dto.Image);
+        Event.ImagePath = imagePath;
+
         await _repository.AddAsync(Event);
         await _repository.SaveChangesAsync();
+
+        return new("Created");
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task<ResultDto> DeleteAsync(Guid id)
     {
         var Event = await _repository.GetByIdAsync(id);
 
         if (Event is null)
-            throw new NotFoundException("Event not found");
+            throw new NotFoundException();
 
         _repository.Delete(Event);
         await _repository.SaveChangesAsync();
+
+        await _cloudinaryService.FileDeleteAsync(Event.ImagePath);
+
+        return new("Deleted");
     }
 
-    public async Task<List<EventGetDto>> GetAllAsync()
+    public async Task<ResultDto<List<EventGetDto>>> GetAllAsync()
     {
-        var events = await _repository.GetAll().Include(x=>x.Category).ToListAsync();
+        var events = await _repository.GetAll().Include(x => x.Category).ToListAsync();
 
         var dtos = _mapper.Map<List<EventGetDto>>(events);
 
-        return dtos;
+        return new(dtos);
     }
 
-    public async Task<EventGetDto> GetAsync(Guid id)
+    public async Task<ResultDto<EventGetDto>> GetByIdAsync(Guid id)
     {
         var Event = await _repository.GetByIdAsync(id);
 
         if (Event is null)
-            throw new NotFoundException("Event not found");
+            throw new NotFoundException();
 
         var dto = _mapper.Map<EventGetDto>(Event);
 
-        return dto;
+        return new(dto);
     }
 
-    public async Task UpdateAsync(EventUpdateDto dto)
+    public async Task<ResultDto> UpdateAsync(EventUpdateDto dto)
     {
         var Event = await _repository.GetByIdAsync(dto.Id);
 
         if (Event is null)
-            throw new NotFoundException("Event not found");
+            throw new NotFoundException();
 
         Event = _mapper.Map(dto, Event);
+
+        if (dto.Image is not null)
+        {
+            await _cloudinaryService.FileDeleteAsync(Event.ImagePath);
+            var imagePath = await _cloudinaryService.FileCreateAsync(dto.Image);
+            Event.ImagePath = imagePath;
+        }
 
         _repository.Update(Event);
 
         await _repository.SaveChangesAsync();
+
+        return new("Updated");
     }
 }

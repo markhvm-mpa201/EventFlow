@@ -4,9 +4,9 @@ namespace EventFlow.Business.Services.Abstractions;
 
 public interface IEventService
 {
-    Task CreateAsync(EventCreateDto dto);
-    Task UpdateAsync(EventUpdateDto dto);
-    Task DeleteAsync(Guid id);
-    Task<List<EventGetDto>> GetAllAsync();
-    Task<EventGetDto> GetAsync(Guid id);
+    Task<ResultDto> CreateAsync(EventCreateDto dto);
+    Task<ResultDto> UpdateAsync(EventUpdateDto dto);
+    Task<ResultDto> DeleteAsync(Guid id);
+    Task<ResultDto<List<EventGetDto>>> GetAllAsync();
+    Task<ResultDto<EventGetDto>> GetByIdAsync(Guid id);
 }

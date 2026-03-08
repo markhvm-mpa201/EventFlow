@@ -1,5 +1,8 @@
-﻿namespace EventFlow.Business.Exceptions;
+﻿using EventFlow.Business.Abstraction;
 
-public class NotFoundException(string message = "Object is not found") : Exception(message)
+namespace EventFlow.Business.Exceptions;
+
+public class NotFoundException(string message = "Object is not found") : Exception(message), IBaseException
 {
+    public int StatusCode { get; set; } = 404;
 }

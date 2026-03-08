@@ -1,12 +1,7 @@
-﻿namespace EventFlow.Business.Dtos.EventDtos;
+﻿namespace EventFlow.Core.Entities.Common;
 
-public class EventGetDto
+public abstract class BaseAuditabelEntity : BaseEntity
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    public string CategoryName { get; set; } = string.Empty;
-
     public string CreatedBy { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
     public string? UpdatedBy { get; set; }

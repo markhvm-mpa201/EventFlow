@@ -2,9 +2,11 @@
 
 namespace EventFlow.Core.Entities;
 
-public class Event : BaseEntity
+public class Event : BaseAuditabelEntity
 {
     public string Name { get; set; } = string.Empty;
+
+    public string ImagePath { get; set; } = string.Empty;
 
     public Guid CategoryId { get; set; }
 
