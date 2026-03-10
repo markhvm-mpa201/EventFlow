@@ -1,4 +1,4 @@
-﻿using EventFlow.Business.Dtos.CategoryDtos;
+﻿using EventFlow.Business.Dtos;
 using EventFlow.Business.Services.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

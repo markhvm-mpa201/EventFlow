@@ -2,13 +2,13 @@
 
 public class ResultDto
 {
-    public bool IsSuccess { get; set; }
+    public bool IsSucced { get; set; }
     public int StatusCode { get; set; }
     public string Message { get; set; } = string.Empty;
 
     public ResultDto()
     {
-        IsSuccess = true;
+        IsSucced = true;
         StatusCode = 200;
         Message = "Successfully";
     }
@@ -28,7 +28,7 @@ public class ResultDto
     {
         Message = message;
         StatusCode = statusCode;
-        IsSuccess = isSucced;
+        IsSucced = isSucced;
     }
 }
 
@@ -59,6 +59,6 @@ public class ResultDto<T> : ResultDto
         Data = data;
         Message = message;
         StatusCode = statusCode;
-        IsSuccess = isSucced;
+        IsSucced = isSucced;
     }
 }
