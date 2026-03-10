@@ -1,5 +1,6 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using EventFlow.Business.Dtos.CloudinaryDtos;
 using EventFlow.Business.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

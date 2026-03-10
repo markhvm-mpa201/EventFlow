@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EventFlow.Business.Dtos.EventDtos;
 using EventFlow.Business.Exceptions;
 using EventFlow.Business.Services.Abstractions;
 using EventFlow.Core.Entities;
@@ -55,6 +54,18 @@ internal class EventService(IEventRepository _repository, IMapper _mapper, IClou
             throw new NotFoundException();
 
         var dto = _mapper.Map<EventGetDto>(Event);
+
+        return new(dto);
+    }
+
+    public async Task<ResultDto<EventUpdateDto>> GetUpdatedDtoAsync(Guid id)
+    {
+        var Event = await _repository.GetByIdAsync(id);
+
+        if (Event is null)
+            throw new NotFoundException("Project is not found");
+
+        var dto = _mapper.Map<EventUpdateDto>(Event);
 
         return new(dto);
     }

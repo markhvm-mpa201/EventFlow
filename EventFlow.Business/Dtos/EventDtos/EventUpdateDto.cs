@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace EventFlow.Business.Dtos.EventDtos;
-
+namespace EventFlow.Business.Dtos;
 public class EventUpdateDto
 {
     public Guid Id { get; set; }
@@ -9,5 +8,5 @@ public class EventUpdateDto
 
     public IFormFile? Image { get; set; }
 
-    public string CategoryName { get; set; } = string.Empty;
+    public Guid CategoryId { get; set; }
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using CaegoryFlow.Business.Services.Abstractions;
-using EventFlow.Business.Dtos.CategoryDtos;
 using EventFlow.Business.Exceptions;
+using EventFlow.Business.Services.Abstractions;
 using EventFlow.Core.Entities;
 using EventFlow.DataAccess.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;

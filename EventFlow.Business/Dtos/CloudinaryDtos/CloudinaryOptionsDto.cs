@@ -1,4 +1,4 @@
-﻿namespace EventFlow.Business.Dtos;
+﻿namespace EventFlow.Business.Dtos.CloudinaryDtos;
 
 public class CloudinaryOptionsDto
 {

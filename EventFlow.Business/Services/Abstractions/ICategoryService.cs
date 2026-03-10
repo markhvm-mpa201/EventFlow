@@ -1,6 +1,4 @@
-﻿using EventFlow.Business.Dtos.CategoryDtos;
-
-namespace CaegoryFlow.Business.Services.Abstractions;
+﻿namespace EventFlow.Business.Services.Abstractions;
 
 public interface ICategoryService
 {

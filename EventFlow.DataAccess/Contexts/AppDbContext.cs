@@ -1,5 +1,7 @@
 ﻿using EventFlow.Core.Entities;
 using EventFlow.Core.Entities.Common;
+using EventFlow.DataAccess.ContextInitializer;
+using EventFlow.DataAccess.Helpers;
 using EventFlow.DataAccess.Interceptors;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +12,12 @@ internal class AppDbContext(BaseAuditableInterceptor _interceptor, DbContextOpti
 {
     public DbSet<Event> Events { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Gender> Genders { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        modelBuilder.Entity<Event>().HasQueryFilter(e => !e.IsDeleted);
+        modelBuilder.AddSeedData();
         base.OnModelCreating(modelBuilder);
     }
 

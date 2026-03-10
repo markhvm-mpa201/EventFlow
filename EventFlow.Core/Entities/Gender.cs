@@ -2,6 +2,7 @@
 
 namespace EventFlow.Core.Entities;
 
-public class Ticket : BaseEntity
+public class Gender : BaseEntity
 {
+    public string Name { get; set; } = null!;
 }

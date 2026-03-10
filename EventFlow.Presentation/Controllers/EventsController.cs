@@ -1,11 +1,13 @@
-﻿using EventFlow.Business.Dtos.EventDtos;
+﻿using EventFlow.Business.Dtos;
 using EventFlow.Business.Services.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventFlow.Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class EventsController(IEventService _service) : ControllerBase
 {
     [HttpGet]

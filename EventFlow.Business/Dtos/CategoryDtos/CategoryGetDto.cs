@@ -1,6 +1,4 @@
-﻿using EventFlow.Business.Dtos.EventDtos;
-
-namespace EventFlow.Business.Dtos.CategoryDtos;
+﻿namespace EventFlow.Business.Dtos;
 
 public class CategoryGetDto
 {

@@ -1,5 +1,4 @@
-﻿using EventFlow.Business.Dtos.EventDtos;
-using EventFlow.Business.Helpers;
+﻿using EventFlow.Business.Helpers;
 using FluentValidation;
 
 namespace EventFlow.Business.Validators.EventValidators;

@@ -1,4 +1,4 @@
-﻿namespace EventFlow.Business.Dtos.CategoryDtos;
+﻿namespace EventFlow.Business.Dtos;
 
 public class CategoryCreateDto
 {

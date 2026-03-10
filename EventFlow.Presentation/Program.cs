@@ -1,6 +1,8 @@
 using EventFlow.DataAccess.ServiceRegistraions;
 using EventFlow.Business.ServiceRegistrations;
 using EventFlow.Presentation.Middlewares;
+using System.ComponentModel.Design;
+using EventFlow.DataAccess.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +19,17 @@ builder.Services.AddCors(c => c.AddPolicy("MyPolicy", builder =>
 }));
 
 builder.Services.AddDataAccessServices(builder.Configuration);
-builder.Services.AddBusinessServices();
+builder.Services.AddBusinessServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var initializer = scope.ServiceProvider.GetRequiredService<IContextInitializer>();
+
+await initializer.InitDatabaseAsync();
 
 app.UseMiddleware<GlobalExceptionHandler>();
 
@@ -41,4 +48,4 @@ app.UseCors("MyPolicy");
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

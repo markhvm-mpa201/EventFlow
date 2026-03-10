@@ -1,4 +1,6 @@
 ﻿using EventFlow.Core.Entities;
+using EventFlow.DataAccess.Abstractions;
+using EventFlow.DataAccess.ContextInitializer;
 using EventFlow.DataAccess.Contexts;
 using EventFlow.DataAccess.Interceptors;
 using EventFlow.DataAccess.Repositories.Abstractions;
@@ -14,6 +16,8 @@ public static class DataAccessServiceRegistraion
 {
     public static void AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IContextInitializer, DbContextInitializer>();
+
         services.AddIdentity<AppUser, AppRole>(options =>
         {
             options.Password.RequiredLength = 5;

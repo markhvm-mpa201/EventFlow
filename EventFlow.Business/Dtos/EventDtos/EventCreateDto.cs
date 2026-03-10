@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace EventFlow.Business.Dtos.EventDtos;
+namespace EventFlow.Business.Dtos;
 
 public class EventCreateDto
 {

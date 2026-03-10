@@ -95,6 +95,12 @@ namespace EventFlow.DataAccess.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiredDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -136,6 +142,13 @@ namespace EventFlow.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("502828b0-b9a6-4495-b82a-10c2a8089570"),
+                            Name = "Default Category"
+                        });
                 });
 
             modelBuilder.Entity("EventFlow.Core.Entities.Event", b =>
@@ -183,6 +196,38 @@ namespace EventFlow.DataAccess.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("EventFlow.Core.Entities.Gender", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("7d2203cd-a094-4720-af06-81d861201c09"),
+                            Name = "Male"
+                        },
+                        new
+                        {
+                            Id = new Guid("7ae1b828-b59b-4cd0-ab3a-5cb0193c327b"),
+                            Name = "Female"
+                        },
+                        new
+                        {
+                            Id = new Guid("dda951eb-8b6c-4e59-82b8-b0fac65cde76"),
+                            Name = "Mechanical"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

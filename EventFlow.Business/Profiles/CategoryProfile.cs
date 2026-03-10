@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EventFlow.Business.Dtos.CategoryDtos;
 using EventFlow.Core.Entities;
 
 namespace EventFlow.Business.Profiles;

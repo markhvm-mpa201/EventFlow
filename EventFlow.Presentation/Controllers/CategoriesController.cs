@@ -1,11 +1,13 @@
-﻿using CaegoryFlow.Business.Services.Abstractions;
-using EventFlow.Business.Dtos.CategoryDtos;
+﻿using EventFlow.Business.Dtos.CategoryDtos;
+using EventFlow.Business.Services.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventFlow.Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class CategoriesController(ICategoryService _service) : ControllerBase
 {
     [HttpGet]
